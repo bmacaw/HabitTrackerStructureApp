@@ -1,0 +1,11 @@
+<resources>
+    <string name="app_name">Practice Tracker</string>
+    <string name="app_label">Practice</string>
+    <string name="add_sample_practice_button">Add Sample Practice</string>
+    <string name="add_new_practice_button">Add New Practice</string>
+    <string name="editor_activity_title_new_data">Add Practice</string>
+    <string name="topic_hint_name">Practice Topic</string>
+    <string name="duration_hint_name">Duration in Minutes</string>
+    <string name="submit_practice_button">Submit Practice</string>
+    <string name="main_activity">.MainActivity</string>
+</resources>
