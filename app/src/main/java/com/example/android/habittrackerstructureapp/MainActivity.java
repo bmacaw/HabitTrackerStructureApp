@@ -86,7 +86,7 @@ public class MainActivity extends AppCompatActivity {
             //
             // In the while loop below, iterate through the rows of the cursor and display
             // the information from each column in this order.
-            displayView.setText("The practice table contains " + cursor.getCount() + " practice items.\n\n");
+            displayView.setText("The Practice table contains " + cursor.getCount() + " practice items.\n\n");
             displayView.append(PracticeEntry._ID + " - "
                     + PracticeEntry.COLUMN_PRACTICE_TOPIC + " - "
                     + PracticeEntry.COLUMN_PRACTICE_DURATION + "\n");
