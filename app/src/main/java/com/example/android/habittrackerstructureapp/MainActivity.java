@@ -55,7 +55,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     /**
-     * Temporary helper method to display information in the onscreen TextView about the state of
+     * Helper method to display information in the onscreen TextView about the state of
      * the practice database.
      */
     private void displayDatabaseInfo() {
@@ -66,16 +66,9 @@ public class MainActivity extends AppCompatActivity {
         // Create and/or open a database to read from it
         SQLiteDatabase db = mDbHelper.getReadableDatabase();
 
-        String[] projection = {
-                PracticeEntry._ID,
-                PracticeEntry.COLUMN_PRACTICE_TOPIC,
-                PracticeEntry.COLUMN_PRACTICE_DURATION
-
-        };
-
-        Cursor cursor = db.query(PracticeEntry.TABLE_NAME, projection, null, null, null, null, null);
-
-        TextView displayView = (TextView) findViewById(R.id.text_view_practice);
+        // Perform this raw SQL query "SELECT * FROM practice"
+        // to get a Cursor that contains all rows from the pets
+        Cursor cursor = db.rawQuery("SELECT * FROM " + PracticeEntry.TABLE_NAME, null);
 
         try {
 
@@ -86,6 +79,7 @@ public class MainActivity extends AppCompatActivity {
             //
             // In the while loop below, iterate through the rows of the cursor and display
             // the information from each column in this order.
+            TextView displayView = (TextView) findViewById(R.id.text_view_practice);
             displayView.setText("The Practice table contains " + cursor.getCount() + " practice items.\n\n");
             displayView.append(PracticeEntry._ID + " - "
                     + PracticeEntry.COLUMN_PRACTICE_TOPIC + " - "
