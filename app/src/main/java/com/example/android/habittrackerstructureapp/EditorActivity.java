@@ -3,7 +3,6 @@ package com.example.android.habittrackerstructureapp;
 import android.content.ContentValues;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
-import android.support.annotation.StringRes;
 import android.support.v4.app.NavUtils;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
@@ -36,6 +35,7 @@ public class EditorActivity extends AppCompatActivity {
         setContentView(R.layout.activity_editor);
 
         // Find all relevant views that we will need to read user input from
+        //mIdEditText = (EditText) findViewById(R.id.edit_find_item);
         mTopicEditText = (EditText) findViewById(R.id.edit_topic);
         mDurationEditText = (EditText) findViewById(R.id.edit_duration);
 
@@ -48,7 +48,6 @@ public class EditorActivity extends AppCompatActivity {
                 NavUtils.navigateUpFromSameTask(EditorActivity.this);
             }
         });
-
     }
 
     /**
@@ -83,6 +82,5 @@ public class EditorActivity extends AppCompatActivity {
             Toast.makeText(this, "Practice session saved with row id: " + newRowId, Toast.LENGTH_SHORT).show();
         }
     }
-
 
 }

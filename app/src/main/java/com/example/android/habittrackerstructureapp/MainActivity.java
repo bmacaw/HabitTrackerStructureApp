@@ -41,9 +41,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 insertPractice();
-                Intent addToView = getIntent();
-                finish();
-                startActivity(addToView);
+                displayDatabaseInfo();
             }
         });
     }
@@ -66,20 +64,24 @@ public class MainActivity extends AppCompatActivity {
         // Create and/or open a database to read from it
         SQLiteDatabase db = mDbHelper.getReadableDatabase();
 
-        // Perform this raw SQL query "SELECT * FROM practice"
-        // to get a Cursor that contains all rows from the pets
-        Cursor cursor = db.rawQuery("SELECT * FROM " + PracticeEntry.TABLE_NAME, null);
+        String[] projection = {
+                PracticeEntry._ID,
+                PracticeEntry.COLUMN_PRACTICE_TOPIC,
+                PracticeEntry.COLUMN_PRACTICE_DURATION
+        };
+
+        Cursor cursor = db.query(PracticeEntry.TABLE_NAME, projection, null, null, null, null, null);
+
+        TextView displayView = (TextView) findViewById(R.id.text_view_practice);
 
         try {
-
             // Create a header in the Text View that looks like this:
             //
-            // The pets table contains <number of rows in Cursor> pets.
+            // The practice table contains <number of rows in Cursor> practice.
             // _id - topic - duration
             //
             // In the while loop below, iterate through the rows of the cursor and display
             // the information from each column in this order.
-            TextView displayView = (TextView) findViewById(R.id.text_view_practice);
             displayView.setText("The Practice table contains " + cursor.getCount() + " practice items.\n\n");
             displayView.append(PracticeEntry._ID + " - "
                     + PracticeEntry.COLUMN_PRACTICE_TOPIC + " - "
@@ -131,4 +133,27 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
+    public Cursor readPractice() {
+        // To access our database, we instantiate our subclass of SQLiteOpenHelper
+        // and pass the context, which is the current activity.
+        PracticeDbHelper mDbHelper = new PracticeDbHelper(this);
+
+        // Create and/or open a database to read from it
+        SQLiteDatabase db = mDbHelper.getReadableDatabase();
+
+        String[] projection = {
+                PracticeEntry.COLUMN_PRACTICE_TOPIC
+        };
+
+        try {
+            Cursor cursor = db.query(PracticeEntry.TABLE_NAME, projection, null, null, null, null, null);
+            cursor.moveToFirst();
+            return cursor;
+        } catch (Exception e) {
+            e.printStackTrace();
+            db.close();
+            return null;
+        }
+
+    }
 }

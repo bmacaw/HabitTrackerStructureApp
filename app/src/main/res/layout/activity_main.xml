@@ -35,4 +35,5 @@
         android:layout_below="@+id/add_new_practice_button"
         android:layout_marginTop="18dp"
         android:text="@string/add_sample_practice_button" />
+
 </RelativeLayout>
