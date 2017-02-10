@@ -22,7 +22,7 @@ public class PracticeContract {
          * Name of database table for practice
          */
         public final static String TABLE_NAME = "practice";
-        
+
         /**
          * Topic of Practice.
          * <p>
