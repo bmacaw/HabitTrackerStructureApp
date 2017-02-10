@@ -22,14 +22,7 @@ public class PracticeContract {
          * Name of database table for practice
          */
         public final static String TABLE_NAME = "practice";
-
-        /**
-         * Unique ID number for the practice session (only for use in the database table)
-         * <p>
-         * Type: INTEGER
-         */
-        public final static String _ID = BaseColumns._ID;
-
+        
         /**
          * Topic of Practice.
          * <p>
